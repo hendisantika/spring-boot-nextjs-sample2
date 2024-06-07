@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@500&display=swap");
+
+.container {
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  background-color: #00cc99;
+  --clr: red;
+
+  align-items: center;
+  gap: 10px;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+
+  h1 {
+    color: white;
+    margin-bottom: 10px;
+  }
+}
+
+.productsSection {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+}
+
+.trashIcon {
+  color: white;
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.productContainer {
+  background-color: #f53535;
+  color: white;
+  width: 80dvw;
+
+  padding: 20px;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  .productTitle {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    gap: 5px;
+  }
+
+  .productPrice {
+    font-size: 20px;
+  }
+
+  .productDescription {
+    span {
+      color: #87b3f7;
+    }
+  }
+}
