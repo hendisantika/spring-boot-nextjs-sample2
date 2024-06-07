@@ -1,0 +1,67 @@
+.background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background-color: rgba(0, 0, 0, 0.459);
+
+  height: 100dvh;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 25px;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 4rem;
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+  color: black;
+}
+
+.formUpdate {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.nameProduct,
+.priceProduct {
+  span {
+    padding-right: 20px;
+  }
+
+  input {
+    width: 500px;
+    padding: 10px;
+
+    border: black solid 2px;
+    border-radius: 8px;
+  }
+}
+
+.descriptionProduct {
+  input {
+    width: 600px;
+    height: 200px;
+    padding: 10px;
+
+    border: black solid 2px;
+    border-radius: 8px;
+  }
+}
