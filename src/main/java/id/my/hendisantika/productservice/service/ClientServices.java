@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -33,5 +34,13 @@ public class ClientServices {
         List<ClientDTO> listDto = list.stream().map(client -> new ClientDTO(client)).collect(Collectors.toList());
 
         return listDto;
+    }
+
+    public ClientDTO findById(Long id) {
+        Optional<Client> optional = clientRepository.findById(id);
+
+        Client entity = optional.orElseThrow(() -> new ResourceNotFoundException("Client not found"));
+
+        return new ClientDTO(entity);
     }
 }
