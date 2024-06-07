@@ -26,7 +26,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
-    @Id //gera um ID
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO) //gera um valor para um ID
     private Integer id;
 

@@ -9,8 +9,7 @@ export default function Home() {
     const [products, setProducts] = useState<ProductType[]>([]);
 
     async function getProducts() {
-        // const response = await api.get<ProductType[]>("/products", {});
-        const response = await api.get<ProductType[]>("/", {});
+        const response = await api.get<ProductType[]>("/products", {});
         console.log(response.data);
         setProducts(response.data);
         return response.data;
@@ -31,7 +30,7 @@ export default function Home() {
                             <div className={style.productTitle}>
                                 <h2 className={style.productName}>{product.name}</h2>
                                 <h2 className={style.productPrice}>
-                                    {convertToMoney(product.price / 100)}
+                                    {convertToMoney(product.price)}
                                 </h2>
                                 <div className={style.productDescription}>
                                     <p>
