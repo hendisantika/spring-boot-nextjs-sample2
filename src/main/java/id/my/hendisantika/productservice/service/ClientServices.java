@@ -72,4 +72,16 @@ public class ClientServices {
         entity.setBirthDate(dto.getBirthDate());
         entity.setChildren(dto.getChildren());
     }
+
+    public void delete(Long id) {
+        try {
+            if (!clientRepository.existsById(id)) {
+                throw new ResourceNotFoundException("Id not found");
+            }
+            clientRepository.deleteById(id);
+
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Id not found");
+        }
+    }
 }
