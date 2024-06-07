@@ -1,0 +1,46 @@
+.container {
+  --clr: #ff8c00;
+  display: flex;
+
+  flex-direction: column;
+  padding-top: 5%;
+  background-color: #00cc99;
+  height: 100dvh;
+
+  align-items: center;
+  gap: 10px;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+
+  h1 {
+    color: white;
+  }
+}
+
+.nameProduct,
+.priceProduct {
+  span {
+    padding-right: 20px;
+  }
+
+  input {
+    width: 600px;
+    padding: 10px;
+
+    border: black solid 2px;
+    border-radius: 8px;
+  }
+}
+
+.descriptionProduct {
+  input {
+    width: 600px;
+    height: 200px;
+    padding: 10px;
+
+    border: black solid 2px;
+    border-radius: 8px;
+  }
+}
