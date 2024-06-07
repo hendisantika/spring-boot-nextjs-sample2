@@ -1,9 +1,14 @@
 package id.my.hendisantika.productservice.controller;
 
+import id.my.hendisantika.productservice.dto.ClientDTO;
 import id.my.hendisantika.productservice.service.ClientServices;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,4 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientController {
     private final ClientServices clientServices;
 
+    @GetMapping
+    public ResponseEntity<List<ClientDTO>> findAll() {
+        List<ClientDTO> clientList = clientServices.findAll();
+        return ResponseEntity.ok().body(clientList);
+    }
 }
