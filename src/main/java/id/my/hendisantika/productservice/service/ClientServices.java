@@ -2,6 +2,7 @@ package id.my.hendisantika.productservice.service;
 
 import id.my.hendisantika.productservice.dto.ClientDTO;
 import id.my.hendisantika.productservice.entity.Client;
+import id.my.hendisantika.productservice.exception.ResourceNotFoundException;
 import id.my.hendisantika.productservice.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,6 @@ public class ClientServices {
 
     public ClientDTO findById(Long id) {
         Optional<Client> optional = clientRepository.findById(id);
-
         Client entity = optional.orElseThrow(() -> new ResourceNotFoundException("Client not found"));
 
         return new ClientDTO(entity);
