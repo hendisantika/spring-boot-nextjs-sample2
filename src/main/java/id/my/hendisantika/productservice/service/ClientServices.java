@@ -4,10 +4,12 @@ import id.my.hendisantika.productservice.dto.ClientDTO;
 import id.my.hendisantika.productservice.entity.Client;
 import id.my.hendisantika.productservice.exception.ResourceNotFoundException;
 import id.my.hendisantika.productservice.repository.ClientRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +49,19 @@ public class ClientServices {
     public ClientDTO insert(ClientDTO data) {
         Client entity = new Client();
         copyToEntity(data, entity);
-        repository.save(entity);
+        clientRepository.save(entity);
         return new ClientDTO(entity);
+    }
+
+    @Transactional
+    public ClientDTO update(Long id, ClientDTO dto) {
+        try {
+            Client entity = clientRepository.getOne(id);
+            copyToEntity(dto, entity);
+            repository.save(entity);
+            return new ClientDTO(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Id not found");
+        }
     }
 }
