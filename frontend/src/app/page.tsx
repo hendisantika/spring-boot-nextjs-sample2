@@ -9,7 +9,8 @@ export default function Home() {
     const [products, setProducts] = useState<ProductType[]>([]);
 
     async function getProducts() {
-        const response = await api.get<ProductType[]>("/products", {});
+        // const response = await api.get<ProductType[]>("/products", {});
+        const response = await api.get<ProductType[]>("/", {});
         console.log(response.data);
         setProducts(response.data);
         return response.data;
