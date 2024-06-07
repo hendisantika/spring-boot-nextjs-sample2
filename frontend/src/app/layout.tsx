@@ -1,8 +1,7 @@
-import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
-
-const inter = Inter({subsets: ["latin"]});
+import type {Metadata} from "next";
+import style from "./layout.module.scss";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -15,8 +14,30 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <html lang="pt-BR">
+        <body>
+        <nav>
+            <div className={style.navContainer}>
+                <h1>CRUD Spring Boot NextJS </h1>
+                <ul>
+                    <li>
+                        <Link href="/">Product list</Link>
+                    </li>
+                    <li>
+                        <Link href="/create">Register Product</Link>
+                    </li>
+                    <li>
+                        <Link href="/update">Update Product</Link>
+                    </li>
+                    <li>
+                        <Link href="/delete">Delete Product</Link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <hr/>
+        {children}
+        </body>
         </html>
     );
 }
