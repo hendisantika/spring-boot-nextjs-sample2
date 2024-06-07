@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,5 +62,32 @@ public class ProductController {
 
         Product newProduct = productRepository.save(product);
         return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> update(@PathVariable Integer id, @RequestBody Product product) {
+        Optional<Product> oldProduct = productRepository.findById(id);
+
+        if (oldProduct.isEmpty()) {
+            return ResponseHandle.generate("Product not found :/", HttpStatus.NOT_FOUND);
+        }
+
+        if (product.getName() == null) {
+            return ResponseHandle.generate("You must provide a name for the product", HttpStatus.BAD_REQUEST);
+        }
+
+        if (product.getPrice() == null) {
+            return ResponseHandle.generate("You must inform the price of the product", HttpStatus.BAD_REQUEST);
+        }
+
+        Product updateProduct = oldProduct.get();
+
+        updateProduct.setName(product.getName());
+        updateProduct.setPrice(product.getPrice());
+        updateProduct.setDescription(product.getDescription());
+
+        productRepository.save(updateProduct);
+
+        return ResponseEntity.noContent().build();
     }
 }
