@@ -1,10 +1,15 @@
 package id.my.hendisantika.productservice.service;
 
+import id.my.hendisantika.productservice.dto.ClientDTO;
+import id.my.hendisantika.productservice.entity.Client;
 import id.my.hendisantika.productservice.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,5 +26,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class ClientServices {
 
-    private final ClientRepository repository;
+    private final ClientRepository clientRepository;
+
+    public List<ClientDTO> findAll() {
+        List<Client> list = clientRepository.findAll();
+        List<ClientDTO> listDto = list.stream().map(client -> new ClientDTO(client)).collect(Collectors.toList());
+
+        return listDto;
+    }
 }
