@@ -43,4 +43,11 @@ public class ClientServices {
 
         return new ClientDTO(entity);
     }
+
+    public ClientDTO insert(ClientDTO data) {
+        Client entity = new Client();
+        copyToEntity(data, entity);
+        repository.save(entity);
+        return new ClientDTO(entity);
+    }
 }
