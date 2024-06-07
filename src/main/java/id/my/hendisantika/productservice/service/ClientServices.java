@@ -58,10 +58,18 @@ public class ClientServices {
         try {
             Client entity = clientRepository.getOne(id);
             copyToEntity(dto, entity);
-            repository.save(entity);
+            clientRepository.save(entity);
             return new ClientDTO(entity);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException("Id not found");
         }
+    }
+
+    private void copyToEntity(ClientDTO dto, Client entity) {
+        entity.setName(dto.getName());
+        entity.setCpf(dto.getCpf());
+        entity.setIncome(dto.getIncome());
+        entity.setBirthDate(dto.getBirthDate());
+        entity.setChildren(dto.getChildren());
     }
 }
