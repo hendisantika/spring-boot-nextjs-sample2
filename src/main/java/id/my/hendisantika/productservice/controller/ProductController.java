@@ -6,6 +6,7 @@ import id.my.hendisantika.productservice.util.ResponseHandle;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -88,6 +89,18 @@ public class ProductController {
 
         productRepository.save(updateProduct);
 
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> delete(@PathVariable Integer id) {
+        Optional<Product> deletedProduct = productRepository.findById(id);
+
+        if (deletedProduct.isEmpty()) {
+            return ResponseHandle.generate("Product not found :/", HttpStatus.NOT_FOUND);
+        }
+
+        productRepository.delete(deletedProduct.get());
         return ResponseEntity.noContent().build();
     }
 }
