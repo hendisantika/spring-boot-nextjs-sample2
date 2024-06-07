@@ -13,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by IntelliJ IDEA.
@@ -42,7 +43,7 @@ public class ClientServices {
                 .cpf(client.getCpf())
                 .children(client.getChildren())
                 .income(client.getIncome())
-                .build()).collect(Collectors.toList());
+                .build()).collect(toList());
     }
 
     public ClientDTO findById(Long id) {
