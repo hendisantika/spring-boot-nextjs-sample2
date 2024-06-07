@@ -34,9 +34,15 @@ public class ClientServices {
 
     public List<ClientDTO> findAll() {
         List<Client> list = clientRepository.findAll();
-        List<ClientDTO> listDto = list.stream().map(client -> new ClientDTO(client)).collect(Collectors.toList());
 
-        return listDto;
+        return list.stream().map(client -> ClientDTO.builder()
+                .id(client.getId())
+                .name(client.getName())
+                .birthDate(client.getBirthDate())
+                .cpf(client.getCpf())
+                .children(client.getChildren())
+                .income(client.getIncome())
+                .build()).collect(Collectors.toList());
     }
 
     public ClientDTO findById(Long id) {
